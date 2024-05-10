@@ -3,6 +3,9 @@ package com.viewnext.tarifamicro.business.model;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Clase para guardar las tarifas del fichero tarifas.csv
+ */
 public class MapaTarifas {
 
 	private MapaTarifas() {

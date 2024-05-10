@@ -14,6 +14,12 @@ public class CatalogoService {
 	private CatalogoService() {
 	}
 
+	/**
+	 * Añade las tarifas por id a los Catalogos
+	 * 
+	 * @param lCatalogo
+	 * @return Una lista de Catalogos con las tarifas añadidas
+	 */
 	public static List<Catalogo> processCatalogo(List<Catalogo> lCatalogo) {
 		Tarifa t;
 		for (Catalogo catalogo : lCatalogo) {

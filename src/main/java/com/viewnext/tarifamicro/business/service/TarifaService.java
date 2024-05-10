@@ -16,9 +16,15 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class TarifaService {
 
+	private TarifaService() {
+	}
+
+	/**
+	 * Lee el fichero tarifas.csv y mete las tarifas en una mapa en la clase
+	 * MapaTarifas
+	 */
 	@Bean
 	public static void readCsv() {
-		// Lee el fichero tarifas.csv y lo mete en el mapa de MapaTarifas
 		BufferedReader br;
 		try {
 			br = new BufferedReader(new FileReader("tarifas.csv"));
