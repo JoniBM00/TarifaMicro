@@ -19,4 +19,14 @@ public class Catalogo {
 	private String tipo;
 	private double precio;
 
+	public Catalogo(Long id, String lugar, int stock, int stockReal, int stockVirtual, Long codigo, String nombre) {
+		this.id = id;
+		this.lugar = lugar;
+		this.stock = stock;
+		this.stockReal = stockReal;
+		this.stockVirtual = stockVirtual;
+		this.codigo = codigo;
+		this.nombre = nombre;
+	}
+
 }

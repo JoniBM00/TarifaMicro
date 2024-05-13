@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.viewnext.tarifamicro.business.model.Catalogo;
+import com.viewnext.tarifamicro.business.model.MapaCatalogos;
 import com.viewnext.tarifamicro.business.model.MapaTarifas;
 import com.viewnext.tarifamicro.business.model.Tarifa;
 import com.viewnext.tarifamicro.business.service.CatalogoService;
@@ -19,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/tarifa")
-public class TarifaController {
+public class MainController {
 
 	/**
 	 * Muestra las tarifas sin aplicar el catalogo
@@ -33,6 +35,13 @@ public class TarifaController {
 		return ResponseEntity.ok(lTarifas);
 	}
 
+	@GetMapping("/getAllCatalogos")
+	public ResponseEntity<List<Catalogo>> getAllCatalogos() {
+		ArrayList<Catalogo> lCatalogos = new ArrayList<>(MapaCatalogos.getCatalogos().values());
+		log.info("Mostrando " + lCatalogos.size() + " catalogos.");
+		return ResponseEntity.ok(lCatalogos);
+	}
+
 	/**
 	 * Recibe un json de catalogos, los actualiza con las tarifas del csv y luego
 	 * retorna los catalogos ya actualizados con el precio y el tipo
@@ -41,10 +50,11 @@ public class TarifaController {
 	 * @return Un ResponseEntity de una Lista de Catalogos con el tipo y el precio
 	 *         de la tarifa aplicados
 	 */
-	@GetMapping("/getTarifas")
-	public ResponseEntity<List<Catalogo>> getAll(@RequestBody List<Catalogo> lCatalogo) {
-		List<Catalogo> lCatalogoProcesado = CatalogoService.processCatalogo(lCatalogo);
-		log.info("Mostrando " + lCatalogoProcesado.size() + " tarifas.");
+	@PostMapping("/addCatalogos")
+	public ResponseEntity<List<Catalogo>> addCatalogos(@RequestBody List<Catalogo> lCatalogo) {
+
+		List<Catalogo> lCatalogoProcesado = CatalogoService.processAndAddCatalogo(lCatalogo);
+		log.info("Mostrando " + lCatalogoProcesado.size() + " catalogos.");
 		return ResponseEntity.ok(lCatalogoProcesado);
 	}
 

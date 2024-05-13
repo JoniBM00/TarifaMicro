@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.viewnext.tarifamicro.business.model.Catalogo;
+import com.viewnext.tarifamicro.business.model.MapaCatalogos;
 import com.viewnext.tarifamicro.business.model.MapaTarifas;
 import com.viewnext.tarifamicro.business.model.Tarifa;
 
@@ -20,7 +21,7 @@ public class CatalogoService {
 	 * @param lCatalogo
 	 * @return Una lista de Catalogos con las tarifas añadidas
 	 */
-	public static List<Catalogo> processCatalogo(List<Catalogo> lCatalogo) {
+	public static List<Catalogo> processAndAddCatalogo(List<Catalogo> lCatalogo) {
 		Tarifa t;
 		for (Catalogo catalogo : lCatalogo) {
 
@@ -28,8 +29,10 @@ public class CatalogoService {
 			if (t != null) {
 				catalogo.setTipo(t.getTipo());
 				catalogo.setPrecio(t.getPrecio());
+				MapaCatalogos.getCatalogos().put(catalogo.getId(), catalogo);
 			}
 		}
+
 		return lCatalogo;
 	}
 
