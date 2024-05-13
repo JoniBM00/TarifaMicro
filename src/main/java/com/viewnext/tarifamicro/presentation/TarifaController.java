@@ -21,7 +21,11 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/tarifa")
 public class TarifaController {
 
-	// SOLO MUESTRA LAS TARIFAS SIN APLICAR EL CATALOGO
+	/**
+	 * Muestra las tarifas sin aplicar el catalogo
+	 * 
+	 * @return Un ResponseEntity de una lista de tarifas
+	 */
 	@GetMapping("/getAllTarifas")
 	public ResponseEntity<List<Tarifa>> getAllTarifas() {
 		ArrayList<Tarifa> lTarifas = new ArrayList<>(MapaTarifas.getTarifas().values());
