@@ -13,7 +13,7 @@ public class MapaTarifas {
 
 	private static Map<Long, Tarifa> mTarifas = new HashMap<>();
 
-	public static void addTarifa(Long id, Tarifa tarifa) {
+	public static void addTarifa(Tarifa tarifa) {
 		mTarifas.put(tarifa.getId(), tarifa);
 	}
 

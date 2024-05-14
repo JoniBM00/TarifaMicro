@@ -13,7 +13,7 @@ public class MapaCatalogos {
 
 	private static Map<Long, Catalogo> mCatalogos = new HashMap<>();
 
-	public static void addCatalogo(Long id, Catalogo catalogo) {
+	public static void addCatalogo(Catalogo catalogo) {
 		mCatalogos.put(catalogo.getId(), catalogo);
 	}
 

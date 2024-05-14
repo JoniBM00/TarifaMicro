@@ -37,7 +37,7 @@ public class TarifaService {
 				t.setTipo(values[1]);
 				t.setPrecio(Double.valueOf(values[2]));
 
-				MapaTarifas.addTarifa(t.getId(), t);
+				MapaTarifas.addTarifa(t);
 			}
 			log.info("Tarifas leidas del csv: " + MapaTarifas.getTarifas().size());
 		} catch (IOException | NumberFormatException e) {

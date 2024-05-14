@@ -23,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/tarifa")
 public class MainController {
 
+	private static final String MOSTRANDO = "Mostrando ";
+
 	/**
 	 * Muestra las tarifas sin aplicar el catalogo
 	 * 
@@ -31,14 +33,14 @@ public class MainController {
 	@GetMapping("/getAllTarifas")
 	public ResponseEntity<List<Tarifa>> getAllTarifas() {
 		ArrayList<Tarifa> lTarifas = new ArrayList<>(MapaTarifas.getTarifas().values());
-		log.info("Mostrando " + lTarifas.size() + " tarifas.");
+		log.info(MOSTRANDO + lTarifas.size() + " tarifas.");
 		return ResponseEntity.ok(lTarifas);
 	}
 
 	@GetMapping("/getAllCatalogos")
 	public ResponseEntity<List<Catalogo>> getAllCatalogos() {
 		ArrayList<Catalogo> lCatalogos = new ArrayList<>(MapaCatalogos.getCatalogos().values());
-		log.info("Mostrando " + lCatalogos.size() + " catalogos.");
+		log.info(MOSTRANDO + lCatalogos.size() + " catalogos.");
 		return ResponseEntity.ok(lCatalogos);
 	}
 
@@ -54,7 +56,7 @@ public class MainController {
 	public ResponseEntity<List<Catalogo>> addCatalogos(@RequestBody List<Catalogo> lCatalogo) {
 
 		List<Catalogo> lCatalogoProcesado = CatalogoService.processAndAddCatalogo(lCatalogo);
-		log.info("Mostrando " + lCatalogoProcesado.size() + " catalogos.");
+		log.info(MOSTRANDO + lCatalogoProcesado.size() + " catalogos.");
 		return ResponseEntity.ok(lCatalogoProcesado);
 	}
 
