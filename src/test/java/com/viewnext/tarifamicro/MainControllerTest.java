@@ -19,7 +19,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.viewnext.tarifamicro.business.model.Catalogo;
 import com.viewnext.tarifamicro.business.service.TarifaService;
@@ -31,20 +30,10 @@ class MainControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 
-	@Autowired
-	private ObjectMapper objectMapper;
-
 	@MockBean
 	TarifaService tarifaService;
 
-	private List<Catalogo> lCatalogoC;
-
 	private List<Catalogo> lCatalogo;
-
-	private Catalogo catalogoC1;
-	private Catalogo catalogoC2;
-	private Catalogo catalogoC3;
-	private Catalogo catalogoC4;
 
 	private Catalogo catalogo1;
 	private Catalogo catalogo2;
@@ -91,7 +80,6 @@ class MainControllerTest {
 	public void initMocks() {
 		TarifaService.readCsv();
 		lCatalogo = new ArrayList<Catalogo>();
-		lCatalogoC = new ArrayList<Catalogo>();
 
 		catalogo1 = new Catalogo(55555L, "PENINSULA", 1, 1, 0, 55555L, "GT Alcatel Pixie 3");
 		catalogo2 = new Catalogo(33333L, "PENINSULA", 5, 5, 0, 33333L, "samsung galaxy 3 3");
@@ -102,16 +90,6 @@ class MainControllerTest {
 		lCatalogo.add(catalogo2);
 		lCatalogo.add(catalogo3);
 		lCatalogo.add(catalogo4);
-
-		catalogoC1 = new Catalogo(55555L, "PENINSULA", 1, 1, 0, 55555L, "GT Alcatel Pixie 3", "Enterprise", 99.99);
-		catalogoC2 = new Catalogo(33333L, "PENINSULA", 5, 5, 0, 33333L, "samsung galaxy 3 3", "Avanzado", 29.99);
-		catalogoC3 = new Catalogo(11111L, "PENINSULA", 5, 5, 0, 11111L, "Samsung Galaxy 1", "Básico", 9.99);
-		catalogoC4 = new Catalogo(44444L, "PENINSULA", 5, 5, 0, 44444L, "Huawei Media Pag 11", "Pro", 49.99);
-
-		lCatalogo.add(catalogoC1);
-		lCatalogo.add(catalogoC2);
-		lCatalogo.add(catalogoC3);
-		lCatalogo.add(catalogoC4);
 
 	}
 

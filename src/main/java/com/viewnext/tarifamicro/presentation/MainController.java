@@ -15,6 +15,7 @@ import com.viewnext.tarifamicro.business.model.MapaCatalogos;
 import com.viewnext.tarifamicro.business.model.MapaTarifas;
 import com.viewnext.tarifamicro.business.model.Tarifa;
 import com.viewnext.tarifamicro.business.service.CatalogoService;
+import com.viewnext.tarifamicro.business.service.TarifaService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +25,18 @@ import lombok.extern.slf4j.Slf4j;
 public class MainController {
 
 	private static final String MOSTRANDO = "Mostrando ";
+
+	/**
+	 * Muestra las tarifas aplicandole el iva
+	 * 
+	 * @return ResponseEntity de Tarifa con el iva aplicado
+	 */
+	@GetMapping("/getTarifa")
+	public ResponseEntity<List<Tarifa>> getTarifa() {
+		List<Tarifa> lTarifasConIva = TarifaService.conIva();
+		log.info(MOSTRANDO + lTarifasConIva.size() + " con iva añadido.");
+		return ResponseEntity.ok(lTarifasConIva);
+	}
 
 	/**
 	 * Muestra las tarifas sin aplicar el catalogo
@@ -37,6 +50,11 @@ public class MainController {
 		return ResponseEntity.ok(lTarifas);
 	}
 
+	/**
+	 * Muestra todos los catalogos
+	 * 
+	 * @return Un ResponseEntity de una lista de Catalogos
+	 */
 	@GetMapping("/getAllCatalogos")
 	public ResponseEntity<List<Catalogo>> getAllCatalogos() {
 		ArrayList<Catalogo> lCatalogos = new ArrayList<>(MapaCatalogos.getCatalogos().values());
