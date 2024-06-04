@@ -31,7 +31,7 @@ public class MainController {
 	 * 
 	 * @return ResponseEntity de Tarifa con el iva aplicado
 	 */
-	@GetMapping("/getTarifa")
+	@GetMapping("/getAll")
 	public ResponseEntity<List<Tarifa>> getTarifa() {
 		List<Tarifa> lTarifasConIva = TarifaService.conIva();
 		log.info(MOSTRANDO + lTarifasConIva.size() + " con iva añadido.");
